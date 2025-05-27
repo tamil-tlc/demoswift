@@ -19,18 +19,10 @@ jobs:
      with:
       args: --strict
 
- 
- build:
-  needs: [lint]
-  runs-on: macos-latest
 
-  steps:
-   - name: swift build
-     run: swift --version
-      
   
  unit-test:
-  needs: [lint, build]
+  needs: [lint]
   runs-on: macos-latest
 
   steps:
@@ -42,3 +34,17 @@ jobs:
 
    - name: Run swift test
      run: swift test
+
+
+    
+ build:
+  needs: [lint, unit-test]
+  runs-on: macos-latest
+
+  steps:
+   - name: checkout the code
+     uses: actions/checkout@v4
+
+   - name: swift build
+     run: swift --version
+        
