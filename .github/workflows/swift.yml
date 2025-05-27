@@ -26,10 +26,7 @@ jobs:
 
   steps:
    - name: swift build
-     run: |
-      swift --version
-      swift build --clean
-      swift build
+     run: swift --version
       
   
  unit-test:
