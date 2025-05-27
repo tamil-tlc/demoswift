@@ -19,27 +19,9 @@ jobs:
      with:
       args: --strict
 
- unit-test:
-  needs: [lint]
-  runs-on: macos-latest
-
-  steps:
-   - name: checkout the code 
-     uses: actions/checkout@v4
-
-   - name: setup swift
-     uses: swift-actions/setup-swift@v1
-     with:
-      swift-version: '5.9'
-
-   - name: initialization swift package
-     run: swift package init --type executable
-
-   - name: Run swift test
-     run: swift test
-
+ 
  build:
-  needs: [lint, unit-test]
+  needs: [lint]
   runs-on: macos-latest
 
   steps:
@@ -50,3 +32,16 @@ jobs:
       swift build
       
   
+ unit-test:
+  needs: [lint, build]
+  runs-on: macos-latest
+
+  steps:
+   - name: checkout the code 
+     uses: actions/checkout@v4
+
+   - name: initialization swift package
+     run: swift package init --type executable
+
+   - name: Run swift test
+     run: swift test
