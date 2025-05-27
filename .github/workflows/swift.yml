@@ -1,0 +1,48 @@
+name: swift ci
+
+on: 
+ push:
+  branches: [ "main", "qa", "dev" ]
+ pull_request:
+  branches: [ "qa", "dev", "main", "feature/*", "realese/*" ]
+
+jobs:
+  lint:
+  runs-on: macos-latest
+
+  steps:
+    - name: checkout the repository
+      uses: actions/checkout@v4
+
+    - name: setup swiftlint
+      uses: norio-nomura/actions-swiftlint@v3.2.2
+      with:
+       args: --strict
+
+     
+unit-test:
+needs: [lint]
+runs-on: macos-latest
+
+      steps:
+       - name: checkout repository
+         uses: actions/checkout@v4
+
+       - name: Run swift test
+         run: swift test
+
+         
+  build:
+    needs: [lint, unit-test]
+    runs-on: macos-latest
+
+    steps:
+      - name: checkout the repository
+        uses: actions/checkout@v4
+
+      - name: swift build
+        run: |
+          swift--version
+          swift build--clean
+          swift build
+                
