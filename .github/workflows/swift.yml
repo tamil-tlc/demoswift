@@ -27,8 +27,8 @@ jobs:
   steps:
    - name: swift build
      run: |
-      swift--version
-      swift build--clean
+      swift --version
+      swift build --clean
       swift build
       
   
