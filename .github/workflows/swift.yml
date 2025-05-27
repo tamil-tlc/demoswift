@@ -31,7 +31,7 @@ jobs:
   
  unit-test:
   needs: [lint, build]
-  runs-on: ubuntu-latest
+  runs-on: macos-latest
 
   steps:
    - name: checkout the code 
