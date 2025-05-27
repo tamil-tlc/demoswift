@@ -1,6 +1,6 @@
 import XCTest
 @testable import demoswift
-final class demoswiftTests: XCTestCase {
+final class DemoSwiftTests: XCTestCase {
     func testExample() {
         XCTAssertEqual(2 + 2, 4)
     }
