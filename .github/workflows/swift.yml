@@ -15,7 +15,9 @@ jobs:
      uses: actions/checkout@v4
 
    - name: setup swiftlint
-     uses: norio-nomura/actions-swiftlint@v3.2.1
+     uses: norio-nomura/actions-swiftlint@v3.2.2
+     with:
+      args: --strict
 
  unit-test:
   needs: [lint]
