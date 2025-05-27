@@ -2,9 +2,9 @@ name: swift ci
 
 on:
  push:
-  branches: [ "main", "qa", "dev" ]
+  branches: [ "qa", "dev" ]
  pull_request:
-  branches: [ "main", "qa", "dev", "feature/*", "realese/*" ]
+  branches: [ "qa", "dev", "feature/*", "realese/*" ]
 
 jobs:
  lint:
